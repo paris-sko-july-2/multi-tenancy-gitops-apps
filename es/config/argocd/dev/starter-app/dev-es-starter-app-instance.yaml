@@ -1,18 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prod-mq-metric-samples-instance
+  name: dev-es-starter-app-instance
   annotations:
-    argocd.argoproj.io/sync-wave: "300"
+    argocd.argoproj.io/sync-wave: "310"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
+  ignoreDifferences:
+  - group: route.openshift.io/v1
+    kind: route
+    name: es-starter-app
+    jsonPointers:
+    - /spec/host
   destination:
-    namespace: prod
+    namespace: dev
     server: https://kubernetes.default.svc
   project: applications
   source:
-    path: mq/environments/prod/mq-metric-samples/
+    path: es/environments/dev/starter-app/
     repoURL: https://github.com/paris-sko-july-2/multi-tenancy-gitops-apps.git
     targetRevision: master
   syncPolicy:

@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prod-mq-metric-samples-instance
+  name: dev-event-streams-instance
   annotations:
     argocd.argoproj.io/sync-wave: "300"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: prod
+    namespace: dev
     server: https://kubernetes.default.svc
   project: applications
   source:
-    path: mq/environments/prod/mq-metric-samples/
+    path: es/environments/dev/event-streams/
     repoURL: https://github.com/paris-sko-july-2/multi-tenancy-gitops-apps.git
     targetRevision: master
   syncPolicy:
