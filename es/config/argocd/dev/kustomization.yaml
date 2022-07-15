@@ -1,4 +1,4 @@
 # Select what you want to get installed
 resources:
-#  - event-streams
+ - event-streams
 #  - starter-app
